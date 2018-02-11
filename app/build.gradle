@@ -54,8 +54,16 @@ dependencies {
     // Logging
     implementation "com.github.ajalt:timberkt:$rootProject.ext.TIMBERKT_VERSION"
 
+    // Networking
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-moshi:$rootProject.ext.RETROFIT_VERSION"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.OK_HTTP_VERSION"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.OK_HTTP_VERSION"
+
     // Json parsing
     implementation "com.squareup.moshi:moshi:$rootProject.ext.MOSHI_VERSION"
+    implementation "com.squareup.moshi:moshi-kotlin:$rootProject.ext.MOSHI_VERSION"
 
     // Testing
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"

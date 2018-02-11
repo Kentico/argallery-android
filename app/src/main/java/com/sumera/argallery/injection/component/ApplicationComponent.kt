@@ -3,6 +3,7 @@ package com.sumera.argallery.injection.component
 import com.sumera.argallery.App
 import com.sumera.argallery.injection.modules.ActivityBuilderModule
 import com.sumera.argallery.injection.modules.ApplicationModule
+import com.sumera.argallery.injection.modules.NetworkModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     ApplicationModule::class,
     AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class,
-    ActivityBuilderModule::class
+    ActivityBuilderModule::class,
+    NetworkModule::class
 ])
 interface ApplicationComponent : AndroidInjector<App> {
 
