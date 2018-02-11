@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.sumera.argalleryandroid"
         minSdkVersion 24
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -23,11 +22,41 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Kotlin
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.RX_JAVA"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.RX_KOTLIN"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.RX_ANDROID"
+
+    // RxBinding
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.ext.RX_BINDING"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$RX_BINDING"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.ext.RX_BINDING"
+    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rootProject.ext.RX_BINDING"
+
+    // Support libraries
+    implementation "com.android.support:design:$rootProject.ext.SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.CONSTRAINT_LAYOUT"
+
+    // Dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.ext.DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.DAGGER_VERSION"
+
+    // Mvi architecture
+    implementation "com.github.SumeraMartin:koreactor:$rootProject.ext.KOREACTOR_VERSION"
+
+    // Logging
+    implementation "com.github.ajalt:timberkt:$rootProject.ext.TIMBERKT_VERSION"
+
+    // Json parsing
+    implementation "com.squareup.moshi:moshi:$rootProject.ext.MOSHI_VERSION"
+
+    // Testing
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }

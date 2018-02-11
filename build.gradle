@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -19,9 +19,23 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    SUPPORT_LIBRARY_VERSION = '27.0.2'
+    CONSTRAINT_LAYOUT = '1.0.2'
+    RX_JAVA = '2.1.8'
+    RX_KOTLIN = '2.2.0'
+    RX_ANDROID = '2.0.1'
+    RX_BINDING = '2.1.0'
+    DAGGER_VERSION = '2.14.1'
+    KOREACTOR_VERSION = '0.0.4'
+    TIMBERKT_VERSION = '1.4.0'
+    MOSHI_VERSION = '1.5.0'
 }
