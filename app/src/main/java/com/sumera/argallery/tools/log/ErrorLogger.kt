@@ -1,10 +1,19 @@
 package com.sumera.argallery.tools.log
 
 import com.github.ajalt.timberkt.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object ErrorLogger {
+@Singleton
+class ErrorLogger @Inject constructor() {
 
-    fun log(e: Throwable) {
-        Timber.e(e)
+    companion object {
+        fun log(e: Throwable) {
+            Timber.e(e)
+        }
+    }
+
+    fun logException(e: Throwable) {
+        ErrorLogger.log(e)
     }
 }

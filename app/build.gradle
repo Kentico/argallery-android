@@ -33,6 +33,7 @@ dependencies {
     // RxBinding
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.ext.RX_BINDING"
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$RX_BINDING"
+    implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$RX_BINDING"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.ext.RX_BINDING"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rootProject.ext.RX_BINDING"
 
@@ -49,7 +50,8 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.DAGGER_VERSION"
 
     // Mvi architecture
-    implementation "com.github.SumeraMartin:koreactor:$rootProject.ext.KOREACTOR_VERSION"
+//    implementation "com.github.SumeraMartin:koreactor:$rootProject.ext.KOREACTOR_VERSION"
+    implementation "com.github.SumeraMartin:koreactor:7d99f335a6"
 
     // Logging
     implementation "com.github.ajalt:timberkt:$rootProject.ext.TIMBERKT_VERSION"

@@ -4,7 +4,7 @@ import com.github.ajalt.timberkt.Timber
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import com.sumera.argallery.BuildConfig
-import com.sumera.argallery.data.remote.KenticoService
+import com.sumera.argallery.data.store.remote.KenticoService
 import com.sumera.argallery.injection.KenticoDeliveryUrl
 import dagger.Module
 import dagger.Provides

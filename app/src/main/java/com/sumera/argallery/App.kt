@@ -3,6 +3,7 @@ package com.sumera.argallery
 import android.app.Activity
 import android.app.Application
 import com.sumera.argallery.injection.component.DaggerApplicationComponent
+import com.sumera.argallery.tools.log.StateLogger
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class App : Application(), HasActivityInjector {
 
     @Inject lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+    @Inject lateinit var stateLogger: StateLogger
 
     override fun onCreate() {
         super.onCreate()
@@ -22,6 +24,10 @@ class App : Application(), HasActivityInjector {
         }
 
         initializeApplicationComponent()
+
+        if (BuildConfig.DEBUG) {
+            stateLogger.init()
+        }
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
