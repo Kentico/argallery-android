@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:sothree="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/sliding_layout"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:gravity="bottom"
+	sothree:umanoPanelHeight="68dp"
+	sothree:umanoShadowHeight="4dp"
+	sothree:umanoScrollableView="@id/pictureDetail_description"
+	sothree:umanoParallaxOffset="100dp"
+	sothree:umanoDragView="@id/pictureDetail_bottomPanelContainer">
 
-	<ImageView
+	<com.alexvasilkov.gestures.views.GestureImageView
 		android:id="@+id/pictureDetail_image"
 		android:scaleType="fitCenter"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 
-</android.support.constraint.ConstraintLayout>
+	<LinearLayout
+		android:id="@+id/pictureDetail_bottomPanelContainer"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<FrameLayout
+			android:id="@+id/pictureDetail_bottomPanelHeader"
+			android:layout_width="match_parent"
+			android:layout_height="80dp">
+
+			<ImageView
+				android:id="@+id/pictureDetail_favourite"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:src="@drawable/ic_favourite_empty"/>
+
+		</FrameLayout>
+
+		<ScrollView
+			android:id="@+id/pictureDetail_description"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="200dp"
+					android:gravity="center|top"
+					android:text="The Awesome Sliding Up Panel"
+					android:textSize="16sp"
+					android:background="@color/colorAccent"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="200dp"
+					android:gravity="center|top"
+					android:text="The Awesome Sliding Up Panel"
+					android:textSize="16sp"
+					android:background="@color/colorAccent"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="200dp"
+					android:gravity="center|top"
+					android:text="The Awesome Sliding Up Panel"
+					android:textSize="16sp"
+					android:background="@color/colorAccent"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="200dp"
+					android:gravity="center|top"
+					android:text="The Awesome Sliding Up Panel"
+					android:textSize="16sp"
+					android:background="@color/colorAccent"/>
+
+			</LinearLayout>
+
+		</ScrollView>
+
+	</LinearLayout>
+
+
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -12,7 +12,9 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AllPicturesDataSourceStore @Inject constructor(
         private val kenticoStore: KenticoStore,
         private val errorLogger: ErrorLogger

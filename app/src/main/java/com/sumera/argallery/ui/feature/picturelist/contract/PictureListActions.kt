@@ -9,3 +9,5 @@ sealed class PictureListActions : MviAction<PictureListState>
 data class OnFocusedItemChanged(val itemIndex: Int) : PictureListActions()
 
 data class OnPictureClicked(val picture: Picture) : PictureListActions()
+
+object OnFilterClicked : PictureListActions()

@@ -73,12 +73,18 @@ dependencies {
 
     // Image loader
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.GLIDE_VERSION"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.GLIDE_VERSION"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.ext.GLIDE_VERSION"
 
     // UI
     implementation "com.yarolegovich:discrete-scrollview:$rootProject.ext.DISCRETE_SCROLL_VIEW_VERSION"
     implementation "com.wang.avi:library:$rootProject.ext.AVLOADING_INDICATOR_VERSION"
     implementation "com.alexvasilkov:gesture-views:$rootProject.ext.GESTURE_VIEWS_VERSION"
+    implementation "com.sothree.slidinguppanel:library:$rootProject.ext.SLIDING_UP_PANNEL_VERSION"
+
+    // Data persistence
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.ROOM_VERSION"
+    implementation "android.arch.persistence.room:runtime:$rootProject.ext.ROOM_VERSION"
+    kapt "android.arch.persistence.room:compiler:$rootProject.ext.ROOM_VERSION"
 
     // Testing
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"

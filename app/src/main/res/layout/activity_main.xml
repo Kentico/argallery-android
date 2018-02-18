@@ -6,13 +6,47 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/app_name"/>
+		
+		<ImageView
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_gravity="right|center_vertical"
+			android:layout_marginRight="16dp"
+			android:src="@drawable/ic_filter"/>
+
+	</android.support.v7.widget.Toolbar>
+
+	<fragment
+		android:id="@+id/fragment"
+		android:name="com.sumera.argallery.ui.feature.picturelist.PictureListFragment"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/main_tabs"/>
+
 	<android.support.design.widget.TabLayout
 		android:id="@+id/main_tabs"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent">
+		app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
 		<android.support.design.widget.TabItem
 			android:id="@+id/main_allTab"
@@ -33,14 +67,4 @@
 			android:text="Right"/>
 
 	</android.support.design.widget.TabLayout>
-
-	<fragment
-		android:id="@+id/fragment"
-		android:name="com.sumera.argallery.ui.feature.picturelist.PictureListFragment"
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/main_tabs"/>
 </android.support.constraint.ConstraintLayout>

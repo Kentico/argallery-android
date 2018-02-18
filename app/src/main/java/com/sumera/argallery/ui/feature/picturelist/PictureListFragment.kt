@@ -97,7 +97,8 @@ class PictureListFragment : BaseFragment<PictureListState>() {
                 .flatMapSingle { stateObservable.firstOrError() }
                 .observeState {
                     val position = it.pictures.indexOf(it.focusedPicture)
-                    pictureList_infoRecycler.smoothScrollToPosition(position)
+                    val fixedPosition = if (position == -1) 0 else position
+                    pictureList_infoRecycler.smoothScrollToPosition(fixedPosition)
                 }
 
         // Scroll picture recycler to position of focused item

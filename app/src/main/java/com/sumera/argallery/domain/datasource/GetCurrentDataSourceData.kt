@@ -11,8 +11,7 @@ class GetCurrentDataSourceData @Inject constructor(
 ) : BaseObserver<List<Picture>>() {
 
     override fun create(): Observable<List<Picture>> {
-        return currentDataSourceStore.currentDataSourceObservable
-                .flatMap { it.picturesWithLoadingStateObservable }
+        return currentDataSourceStore.getPicturesWithLoadingStateObservable()
                 .map { it.pictures }
     }
 }

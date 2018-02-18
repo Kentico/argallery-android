@@ -19,5 +19,6 @@ class PictureInfoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(picture: Picture) {
         itemView.pictureInfoItem_title.text = picture.title
+        itemView.pictureInfoItem_price.text = picture.price.toString()
     }
 }

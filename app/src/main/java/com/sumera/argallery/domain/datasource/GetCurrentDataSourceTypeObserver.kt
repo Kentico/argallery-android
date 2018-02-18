@@ -11,7 +11,6 @@ class GetCurrentDataSourceTypeObserver @Inject constructor(
 ) : BaseObserver<DataSourceType>() {
 
     override fun create(): Observable<DataSourceType> {
-        return currentDataSourceStore.currentDataSourceObservable
-                .map { it.dataSourceType }
+        return currentDataSourceStore.getCurrentDataSourceTypeObservable()
     }
 }

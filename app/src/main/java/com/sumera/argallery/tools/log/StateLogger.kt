@@ -9,8 +9,8 @@ class StateLogger @Inject constructor(
 ) {
 
     fun init() {
-        currentDataSourceStore.currentDataSourceObservable
-                .flatMap { it.picturesWithLoadingStateObservable }
+        currentDataSourceStore.getPicturesWithLoadingStateObservable()
+                .doOnDispose {  Timber.d { "CURRENT DATA SOURCE = DISPOSE" } }
                 .doOnNext {
                     Timber.d { "CURRENT DATA SOURCE = $it" }
                 }.subscribe()

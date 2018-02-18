@@ -8,6 +8,7 @@ import com.sumera.argallery.tools.koreactor.ObserveBehaviour
 import com.sumera.argallery.ui.base.BaseReactor
 import com.sumera.argallery.ui.feature.main.contract.PictureListState
 import com.sumera.argallery.ui.feature.picturelist.contract.NavigateToPictureDetails
+import com.sumera.argallery.ui.feature.picturelist.contract.OnFilterClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.OnFocusedItemChanged
 import com.sumera.argallery.ui.feature.picturelist.contract.OnPictureClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.SetFocusedPicture
@@ -38,6 +39,7 @@ class PictureListReactor @Inject constructor(
     override fun bind(actions: Observable<MviAction<PictureListState>>) {
         val onFocusedItemChanged = actions.ofActionType<OnFocusedItemChanged>()
         val onPictureClicked = actions.ofActionType<OnPictureClicked>()
+        val onFilterClicked = actions.ofActionType<OnFilterClicked>()
 
         // Observe pictures with loading state from global state
         ObserveBehaviour<Any, PicturesWithLoadingState, PictureListState>(
