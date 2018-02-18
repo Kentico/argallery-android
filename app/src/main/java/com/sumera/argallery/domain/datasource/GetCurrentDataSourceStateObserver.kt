@@ -1,6 +1,6 @@
 package com.sumera.argallery.domain.datasource
 
-import com.sumera.argallery.data.store.datasource.CurrentDataSourceStore
+import com.sumera.argallery.data.store.ui.datasource.CurrentDataSourceStore
 import com.sumera.argallery.data.store.ui.model.PicturesWithLoadingState
 import com.sumera.argallery.domain.base.BaseObserver
 import io.reactivex.Observable

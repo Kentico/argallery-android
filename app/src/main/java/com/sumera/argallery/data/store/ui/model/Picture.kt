@@ -1,7 +1,10 @@
 package com.sumera.argallery.data.store.ui.model
 
+import android.os.Parcelable
 import com.sumera.argallery.ui.common.diffutil.DiffUtilItem
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Picture(
         val id: String,
         val title: String,
@@ -9,7 +12,7 @@ data class Picture(
         val description: String,
         val imageUrl: String,
         val price: Int
-) : DiffUtilItem {
+) : DiffUtilItem, Parcelable {
 
     override val diffUtilIdentity = id
 }

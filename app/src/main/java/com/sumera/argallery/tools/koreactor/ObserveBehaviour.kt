@@ -1,4 +1,4 @@
-package com.sumera.argallery.tools.behaviours
+package com.sumera.argallery.tools.koreactor
 
 import com.sumera.koreactor.behaviour.Messages
 import com.sumera.koreactor.behaviour.MviBehaviour

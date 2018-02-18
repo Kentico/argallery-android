@@ -1,8 +1,8 @@
 package com.sumera.argallery.data.store.remote
 
-import com.sumera.argallery.data.store.datasource.AbstractDataSource
-import com.sumera.argallery.data.store.datasource.model.DataSourceType
-import com.sumera.argallery.data.store.datasource.model.LoadingState
+import com.sumera.argallery.data.store.ui.datasource.AbstractDataSource
+import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
+import com.sumera.argallery.data.store.ui.datasource.model.LoadingState
 import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.argallery.data.store.ui.model.PicturesWithLoadingState
 import com.sumera.argallery.tools.DATA_REQUEST_LIMIT

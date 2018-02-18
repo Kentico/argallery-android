@@ -3,7 +3,7 @@ package com.sumera.argallery.ui.feature.main
 import android.os.Bundle
 import com.jakewharton.rxbinding2.support.design.widget.selections
 import com.sumera.argallery.R
-import com.sumera.argallery.data.store.datasource.model.DataSourceType
+import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.ui.base.BaseActivity
 import com.sumera.argallery.ui.feature.main.contract.MainState
 import com.sumera.argallery.ui.feature.main.contract.TabClickedAction

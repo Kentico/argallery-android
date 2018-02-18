@@ -1,6 +1,6 @@
-package com.sumera.argallery.data.store.datasource
+package com.sumera.argallery.data.store.ui.datasource
 
-import com.sumera.argallery.data.store.datasource.model.DataSourceType
+import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.data.store.ui.model.PicturesWithLoadingState
 import io.reactivex.Observable
 import io.reactivex.Single

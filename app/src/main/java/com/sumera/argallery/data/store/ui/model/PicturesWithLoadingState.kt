@@ -1,6 +1,6 @@
 package com.sumera.argallery.data.store.ui.model
 
-import com.sumera.argallery.data.store.datasource.model.LoadingState
+import com.sumera.argallery.data.store.ui.datasource.model.LoadingState
 
 data class PicturesWithLoadingState(
         val pictures: List<Picture>,

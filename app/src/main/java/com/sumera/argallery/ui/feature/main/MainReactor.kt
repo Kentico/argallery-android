@@ -1,8 +1,8 @@
 package com.sumera.argallery.ui.feature.main
 
-import com.sumera.argallery.data.store.datasource.model.DataSourceType
+import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.domain.datasource.SetCurrentDataSourceCompletabler
-import com.sumera.argallery.tools.behaviours.ExecuteBehaviour
+import com.sumera.argallery.tools.koreactor.ExecuteBehaviour
 import com.sumera.argallery.ui.base.BaseReactor
 import com.sumera.argallery.ui.feature.main.contract.MainState
 import com.sumera.argallery.ui.feature.main.contract.TabClickedAction

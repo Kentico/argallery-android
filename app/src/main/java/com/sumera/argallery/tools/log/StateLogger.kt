@@ -1,7 +1,7 @@
 package com.sumera.argallery.tools.log
 
 import com.github.ajalt.timberkt.Timber
-import com.sumera.argallery.data.store.datasource.CurrentDataSourceStore
+import com.sumera.argallery.data.store.ui.datasource.CurrentDataSourceStore
 import javax.inject.Inject
 
 class StateLogger @Inject constructor(

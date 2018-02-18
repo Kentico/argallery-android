@@ -1,4 +1,4 @@
-package com.sumera.argallery.ui.feature.picturelist.adapter.viewholder
+package com.sumera.argallery.ui.feature.picturelist.adapter.picture.viewholder
 
 import android.view.View
 import android.view.ViewGroup

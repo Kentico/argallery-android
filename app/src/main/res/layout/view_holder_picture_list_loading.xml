@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/card_view"
+	android:layout_gravity="center"
+	android:layout_width="280dp"
 	android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+	<com.wang.avi.AVLoadingIndicatorView
+		android:layout_width="40dp"
+		android:layout_height="40dp"
+		android:layout_gravity="center"
+		app:indicatorName="LineScaleIndicator" />
+
+</FrameLayout>

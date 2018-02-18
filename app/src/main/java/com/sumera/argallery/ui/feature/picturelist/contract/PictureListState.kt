@@ -8,5 +8,6 @@ data class PictureListState(
         val isError: Boolean,
         val pictures: List<Picture>,
         val isLoadingMoreEnabled: Boolean,
+        val isScrollToFocusedItemEnabled: Boolean,
         val focusedPicture: Picture?
 ) : MviState
