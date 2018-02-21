@@ -1,5 +1,6 @@
-package com.sumera.argallery.ui.feature.main.contract
+package com.sumera.argallery.ui.feature.picturelist.contract
 
+import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.koreactor.reactor.data.MviState
 
@@ -8,6 +9,8 @@ data class PictureListState(
         val isError: Boolean,
         val pictures: List<Picture>,
         val isLoadingMoreEnabled: Boolean,
-        val isScrollToFocusedItemEnabled: Boolean,
-        val focusedPicture: Picture?
+        val isScrollToGloballySelectedPictureEnabled: Boolean,
+        val dataSourceType: DataSourceType,
+        val locallySelectedPicture: Picture?,
+        val globallySelectedPicture: Picture?
 ) : MviState

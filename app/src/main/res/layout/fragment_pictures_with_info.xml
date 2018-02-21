@@ -6,8 +6,26 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
+	<FrameLayout
+		android:id="@+id/pictureList_emptyView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:layout_editor_absoluteX="0dp"
+		tools:layout_editor_absoluteY="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="dsadsa"/>
+
+	</FrameLayout>
+
 	<android.support.constraint.Guideline
-		android:id="@+id/pictureList_guideline"
+		android:id="@+id/pictureList_recyclerGuideline"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
@@ -29,6 +47,6 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/pictureList_guideline"/>
+		app:layout_constraintTop_toTopOf="@+id/pictureList_recyclerGuideline"/>
 
 </android.support.constraint.ConstraintLayout>

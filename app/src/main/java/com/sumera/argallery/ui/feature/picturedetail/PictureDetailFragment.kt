@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.jakewharton.rxbinding2.view.clicks
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.sumera.argallery.R
 import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.argallery.ui.base.BaseFragment
@@ -42,6 +43,13 @@ class PictureDetailFragment : BaseFragment<PictureDetailState>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pictureDetail_slidingLayout.addPanelSlideListener(object : SlidingUpPanelLayout.SimplePanelSlideListener() {
+            override fun onPanelSlide(panel: View, slideOffset: Float) {
+                pictureDetail_swipeIndicatorArrow.rotationX = 180 * slideOffset
+            }
+
+            override fun onPanelStateChanged(panel: View, previousState: SlidingUpPanelLayout.PanelState, newState: SlidingUpPanelLayout.PanelState) {}
+        })
 
         pictureDetail_favourite.clicks()
                 .map { TogglFavouriteAction() }
@@ -56,6 +64,9 @@ class PictureDetailFragment : BaseFragment<PictureDetailState>() {
                                 .load(picture.imageUrl)
                                 .into(pictureDetail_image)
                     }
+
+                    pictureDetail_title.text = picture.title
+                    pictureDetail_description.text = picture.description +  picture.description +  picture.description +  picture.description
                 }
 
         // Set favourite state without animation

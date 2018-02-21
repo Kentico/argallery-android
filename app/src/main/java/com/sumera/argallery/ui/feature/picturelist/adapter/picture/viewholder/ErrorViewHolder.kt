@@ -9,7 +9,7 @@ class ErrorViewHolder(view: View) : BasePictureListViewHolder(view) {
 
     companion object {
         fun createInstance(parent: ViewGroup) : ErrorViewHolder {
-            val view = parent.inflateViewHolder(R.layout.view_holder_picture_list_loading)
+            val view = parent.inflateViewHolder(R.layout.view_holder_picture_list_error)
             return ErrorViewHolder(view)
         }
     }

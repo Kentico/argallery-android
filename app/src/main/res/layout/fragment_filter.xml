@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/filter_root"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_gravity="top"
+	android:background="#00000000"
+	android:clickable="true"
+	android:visibility="visible">
+
+	<!-- This view is there to fill empty space on top of filter_content when is animated with Oveshoot -->
+	<View
+		android:id="@+id/filter_overshootFilledSpace"
+		android:layout_width="match_parent"
+		android:layout_height="100dp"
+		android:background="@color/colorPrimary"
+		android:visibility="gone"/>
+
+	<LinearLayout
+		android:id="@+id/filter_content"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimary"
+		android:orientation="vertical">
+
+		<android.support.v7.widget.Toolbar
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:contentInsetLeft="0dp"
+			android:contentInsetStart="0dp"
+			app:contentInsetLeft="0dp"
+			app:contentInsetStart="0dp">
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:orientation="horizontal">
+
+				<ImageView
+					android:id="@+id/filter_back"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="16dp"
+					android:src="@drawable/ic_arrow_back"
+					android:background="?attr/selectableItemBackgroundBorderless"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:paddingTop="16dp"
+					android:paddingBottom="16dp"
+					android:gravity="center_vertical"
+					android:text="@string/filter_title"
+					android:textColor="@color/white"/>
+
+			</LinearLayout>
+
+			<TextView
+				android:id="@+id/filter_reset"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_gravity="right"
+				android:padding="16dp"
+				android:gravity="center_vertical"
+				android:text="@string/filter_reset"
+				android:textColor="@color/white"
+				android:background="?attr/selectableItemBackgroundBorderless"/>
+
+		</android.support.v7.widget.Toolbar>
+
+		<com.appyvet.materialrangebar.RangeBar
+			android:id="@+id/filter_year"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			app:mrb_pinRadius="16dp"
+			app:mrb_pinMaxFont="15sp"
+			app:mrb_selectorColor="@color/white"
+			app:mrb_tickColor="@color/transparent"
+			app:mrb_rangeBarPaddingBottom="12dp"
+			app:mrb_selectorBoundaryColor="@color/white"
+			app:mrb_selectorBoundarySize="2dp"
+			app:mrb_rangeBarColor="@color/white"
+			app:mrb_pinColor="@color/white"
+			app:mrb_pinTextColor="@color/colorPrimary"
+			app:mrb_connectingLineColor="@color/white"
+			app:mrb_connectingLineWeight="2dp"
+			app:mrb_selectorSize="10dp"
+			app:mrb_tickHeight="0dp"
+			app:mrb_tickEnd="2018"
+			app:mrb_tickStart="1980"/>
+
+		<com.appyvet.materialrangebar.RangeBar
+			android:id="@+id/filter_price"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			app:mrb_pinRadius="16dp"
+			app:mrb_pinMaxFont="15sp"
+			app:mrb_selectorColor="@color/white"
+			app:mrb_tickColor="@color/transparent"
+			app:mrb_rangeBarPaddingBottom="12dp"
+			app:mrb_selectorBoundaryColor="@color/white"
+			app:mrb_selectorBoundarySize="2dp"
+			app:mrb_rangeBarColor="@color/white"
+			app:mrb_pinColor="@color/white"
+			app:mrb_pinTextColor="@color/colorPrimary"
+			app:mrb_connectingLineColor="@color/white"
+			app:mrb_connectingLineWeight="2dp"
+			app:mrb_selectorSize="10dp"
+			app:mrb_tickHeight="0dp"
+			app:mrb_tickEnd="2018"
+			app:mrb_tickStart="1980"/>
+
+		<CheckBox
+			android:id="@+id/filter_firstCategory"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
+		<CheckBox
+			android:id="@+id/filter_secondCategory"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
+		<CheckBox
+			android:id="@+id/filter_thirdCategory"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
+	</LinearLayout>
+
+</FrameLayout>

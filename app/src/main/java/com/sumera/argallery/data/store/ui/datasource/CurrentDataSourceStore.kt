@@ -2,8 +2,11 @@ package com.sumera.argallery.data.store.ui.datasource
 
 import com.sumera.argallery.data.store.persistence.FavouritePicturesDataSourceStore
 import com.sumera.argallery.data.store.remote.AllPicturesDataSourceStore
+import com.sumera.argallery.data.store.remote.FilteredPicturesDataSourceStore
 import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.data.store.ui.model.PicturesWithLoadingState
+import com.sumera.argallery.tools.DEFAULT_DATA_SOURCE
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
@@ -12,10 +15,18 @@ import javax.inject.Singleton
 @Singleton
 class CurrentDataSourceStore @Inject constructor(
         private val allPicturesDataSourceStore: AllPicturesDataSourceStore,
-        private val favouritePicturesDataSourceStore: FavouritePicturesDataSourceStore
+        private val favouritePicturesDataSourceStore: FavouritePicturesDataSourceStore,
+        private val filteredPicturesDataSourceStore: FilteredPicturesDataSourceStore
 ) {
 
-    private val currentDataSourceSubject = BehaviorSubject.createDefault(getDataSourceByType(DataSourceType.FAVOURITES))
+    private val currentDataSourceSubject = BehaviorSubject.createDefault(getDataSourceByType(DEFAULT_DATA_SOURCE))
+
+    fun loadMore(): Completable {
+        return currentDataSourceSubject.hide()
+                .take(1)
+                .doOnNext { it.loadMore() }
+                .ignoreElements()
+    }
 
     fun getCurrentDataSourceTypeObservable(): Observable<DataSourceType> {
         return currentDataSourceSubject.hide()
@@ -35,7 +46,7 @@ class CurrentDataSourceStore @Inject constructor(
         return when(dataSource) {
             DataSourceType.ALL -> allPicturesDataSourceStore
             DataSourceType.FAVOURITES -> favouritePicturesDataSourceStore
-            else -> throw NotImplementedError()
+            DataSourceType.FILTERED -> filteredPicturesDataSourceStore
         }
     }
 }

@@ -21,8 +21,7 @@
 		</activity>
 
 		<activity
-			android:name="com.sumera.argallery.ui.feature.picturedetails.PictureDetailsActivity">
-		</activity>
+			android:name=".ui.feature.picturedetails.PictureDetailsActivity"/>
 	</application>
 
 </manifest>

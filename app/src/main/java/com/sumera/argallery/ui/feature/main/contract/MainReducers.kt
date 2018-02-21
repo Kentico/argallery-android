@@ -5,7 +5,7 @@ import com.sumera.koreactor.reactor.data.MviStateReducer
 
 sealed class MainReducers : MviStateReducer<MainState>
 
-data class ShowDataSourceType(
+data class SetDataSourceType(
     private val dataSourceType: DataSourceType
 ) : MainReducers() {
     override fun reduce(oldState: MainState): MainState {

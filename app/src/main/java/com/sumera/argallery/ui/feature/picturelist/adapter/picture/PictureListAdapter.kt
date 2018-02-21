@@ -9,23 +9,37 @@ import com.sumera.argallery.ui.feature.picturelist.adapter.picture.viewholder.Ba
 import com.sumera.argallery.ui.feature.picturelist.adapter.picture.viewholder.ErrorViewHolder
 import com.sumera.argallery.ui.feature.picturelist.adapter.picture.viewholder.LoadingViewHolder
 import com.sumera.argallery.ui.feature.picturelist.adapter.picture.viewholder.PictureViewHolder
-import io.reactivex.subjects.PublishSubject
 import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.view_holder_picture_list_error.view.*
 import javax.inject.Inject
 
 class PictureListAdapter @Inject constructor() : RecyclerView.Adapter<BasePictureListViewHolder>() {
 
+    private val errorClicksSubject = PublishSubject.create<Unit>()
+
     private val clickSubject = PublishSubject.create<Picture>()
 
+    private val onListEndReached = PublishSubject.create<Unit>()
+
     private var data = listOf<DataWrapper>()
+
+    fun errorClicks(): Observable<Unit> {
+        return errorClicksSubject.hide()
+    }
 
     fun clicks(): Observable<Picture> {
         return clickSubject.hide()
     }
 
+    fun onListEndReached(): Observable<Unit> {
+        return onListEndReached.hide()
+    }
+
     fun setNewDataWithDiffUtil(newData: List<DataWrapper>, diffUtil: DiffUtil.DiffResult) {
         data = newData
-        diffUtil.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
+//        diffUtil.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasePictureListViewHolder {
@@ -44,6 +58,15 @@ class PictureListAdapter @Inject constructor() : RecyclerView.Adapter<BasePictur
                     holder.bind(picture)
                 } ?: throw IllegalStateException()
             }
+            is ErrorViewHolder -> {
+                holder.itemView.errorItem_tryAgain.setOnClickListener {
+                    errorClicksSubject.onNext(Unit)
+                }
+            }
+        }
+
+        if (position >= itemCount - 2) {
+            onListEndReached.onNext(Unit)
         }
     }
 

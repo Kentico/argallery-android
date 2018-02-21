@@ -7,11 +7,14 @@ import android.support.v4.content.ContextCompat
 import android.view.WindowManager
 import com.jakewharton.rxbinding2.support.v4.view.pageSelections
 import com.sumera.argallery.R
+import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.argallery.ui.base.BaseActivity
 import com.sumera.argallery.ui.feature.picturedetails.adapter.PictureDetailsAdapter
 import com.sumera.argallery.ui.feature.picturedetails.contract.OnPictureChanged
 import com.sumera.argallery.ui.feature.picturedetails.contract.PictureDetailsState
+import com.sumera.argallery.ui.feature.picturedetails.contract.ScrollToIndexEvent
 import com.sumera.koreactor.reactor.MviReactor
+import com.sumera.koreactor.reactor.data.MviEvent
 import com.sumera.koreactor.util.extension.getChange
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_picture_details.*
@@ -25,8 +28,12 @@ class PictureDetailsActivity : BaseActivity<PictureDetailsState>() {
     @Inject lateinit var pictureDetailsAdapter: PictureDetailsAdapter
 
     companion object {
-        fun getStartIntent(context: Context): Intent {
-            return Intent(context, PictureDetailsActivity::class.java)
+        val pictureKey = "picture_key"
+
+        fun getStartIntent(context: Context, initialPicture: Picture): Intent {
+            return Intent(context, PictureDetailsActivity::class.java).apply {
+                    putExtra(pictureKey, initialPicture)
+            }
         }
     }
 
@@ -53,5 +60,15 @@ class PictureDetailsActivity : BaseActivity<PictureDetailsState>() {
     override fun bindToState(stateObservable: Observable<PictureDetailsState>) {
         stateObservable.getChange { it.pictures }
                 .observeState { pictureDetailsAdapter.data = it }
+    }
+
+    override fun bindToEvent(eventsObservable: Observable<MviEvent<PictureDetailsState>>) {
+        eventsObservable.observeEvent { event ->
+            when(event) {
+                is ScrollToIndexEvent -> {
+                    pictureDetails_viewPager.setCurrentItem(event.index, false)
+                }
+            }
+        }
     }
 }

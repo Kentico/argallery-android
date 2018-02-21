@@ -6,16 +6,18 @@ import com.sumera.argallery.data.store.ui.datasource.model.LoadingState
 import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.argallery.data.store.ui.model.PicturesWithLoadingState
 import com.sumera.argallery.tools.DATA_REQUEST_LIMIT
+import com.sumera.argallery.tools.extensions.random
 import com.sumera.argallery.tools.log.ErrorLogger
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AllPicturesDataSourceStore @Inject constructor(
+open class AllPicturesDataSourceStore @Inject constructor(
         private val kenticoStore: KenticoStore,
         private val errorLogger: ErrorLogger
 ) : AbstractDataSource() {
@@ -36,6 +38,10 @@ class AllPicturesDataSourceStore @Inject constructor(
         startLoadingSubject.onNext(LoadingType.RELOAD)
     }
 
+    open protected fun createQueryParams(): Map<String, String> {
+        return emptyMap()
+    }
+
     private fun subscribeToAllPictures() {
         Observable.merge(startLoadingSubject, Observable.just(LoadingType.RELOAD))
                 .switchMapSingle { loadingType -> getPreviousData(loadingType) }
@@ -47,7 +53,7 @@ class AllPicturesDataSourceStore @Inject constructor(
     }
 
     private fun loadPictures(previousPictures: List<Picture>): Observable<PicturesWithLoadingState> {
-        return kenticoStore.getPictures(DATA_REQUEST_LIMIT, previousPictures.size).toObservable()
+        return kenticoStore.getPictures(DATA_REQUEST_LIMIT, previousPictures.size, createQueryParams()).toObservable()
                 .map { newPictures ->
                     val state = if (newPictures.size < DATA_REQUEST_LIMIT) {
                         LoadingState.COMPLETED
@@ -55,6 +61,14 @@ class AllPicturesDataSourceStore @Inject constructor(
                         LoadingState.INACTIVE
                     }
                     PicturesWithLoadingState(pictures = previousPictures + newPictures, loadingState = state)
+                }
+                .delay(3, TimeUnit.SECONDS)
+                .flatMap {
+                    if ((1..10).random() > 5) {
+                        Observable.error(IllegalStateException())
+                    } else {
+                        Observable.just(it)
+                    }
                 }
                 .doOnError { errorLogger.logException(it) }
                 .onErrorReturn { PicturesWithLoadingState(pictures = previousPictures, loadingState = LoadingState.ERROR) }

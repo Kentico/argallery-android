@@ -29,6 +29,9 @@ dependencies {
     // Kotlin
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    // Kotlin extension
+    implementation "androidx.core:core-ktx:$rootProject.ext.ANDROID_KTX"
+
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.RX_JAVA"
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.RX_KOTLIN"
@@ -80,6 +83,8 @@ dependencies {
     implementation "com.wang.avi:library:$rootProject.ext.AVLOADING_INDICATOR_VERSION"
     implementation "com.alexvasilkov:gesture-views:$rootProject.ext.GESTURE_VIEWS_VERSION"
     implementation "com.sothree.slidinguppanel:library:$rootProject.ext.SLIDING_UP_PANNEL_VERSION"
+    implementation "com.xw.repo:bubbleseekbar:$rootProject.ext.BUBBLESEEKBAR_VERSION-lite"
+    implementation "com.appyvet:materialrangebar:1.4.1"
 
     // Data persistence
     implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.ROOM_VERSION"

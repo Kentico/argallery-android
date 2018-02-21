@@ -12,9 +12,9 @@ class KenticoStore @Inject constructor(
         private val pictureMapper: PictureMapper
 ) {
 
-    fun getPictures(limit: Int, skip: Int): Single<List<Picture>> {
+    fun getPictures(limit: Int, skip: Int, query: Map<String, String>): Single<List<Picture>> {
         return kenticoService
-                .getPictures(limit, skip)
+                .getPictures(limit, skip, query)
                 .map { pictureMapper.toPictures(it) }
     }
 }

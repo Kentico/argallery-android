@@ -1,8 +1,8 @@
 package com.sumera.argallery.ui.feature.picturelist.contract
 
-import com.sumera.argallery.ui.feature.main.contract.PictureListState
+import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.koreactor.reactor.data.MviEvent
 
 sealed class PictureListEvents : MviEvent<PictureListState>()
 
-object NavigateToPictureDetails : PictureListEvents()
+data class NavigateToPictureDetails(val picture: Picture) : PictureListEvents()

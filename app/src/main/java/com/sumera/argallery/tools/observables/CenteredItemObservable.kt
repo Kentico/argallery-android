@@ -1,4 +1,4 @@
-package com.sumera.argallery.tools
+package com.sumera.argallery.tools.observables
 
 import android.support.v7.widget.RecyclerView
 import com.yarolegovich.discretescrollview.DiscreteScrollView

@@ -5,4 +5,6 @@ import com.sumera.koreactor.reactor.data.MviAction
 
 sealed class MainActions : MviAction<MainState>
 
-data class TabClickedAction(val dataSourceType: DataSourceType) : MainActions()
+data class OnTabClickedAction(val dataSourceType: DataSourceType) : MainActions()
+
+object OnFilterClickedAction : MainActions()
