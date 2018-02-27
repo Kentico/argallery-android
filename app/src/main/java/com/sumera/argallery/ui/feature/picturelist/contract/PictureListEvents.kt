@@ -6,3 +6,5 @@ import com.sumera.koreactor.reactor.data.MviEvent
 sealed class PictureListEvents : MviEvent<PictureListState>()
 
 data class NavigateToPictureDetails(val picture: Picture) : PictureListEvents()
+
+object NavigateToFilter : PictureListEvents()

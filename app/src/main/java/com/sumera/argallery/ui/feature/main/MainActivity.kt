@@ -38,6 +38,7 @@ class MainActivity : BaseActivity<MainState>() {
                 .bindToReactor()
 
         main_tabs.selections()
+                .skip(1)
                 .map { getTabDataSourceTypeFor(it.position) }
                 .map { OnTabClickedAction(it) }
                 .bindToReactor()
@@ -71,7 +72,6 @@ class MainActivity : BaseActivity<MainState>() {
                 NavigateToFilter -> {
                     val fm = supportFragmentManager
                     fm.beginTransaction()
-//                            .setCustomAnimations(R.anim.slide_in_down, R.anim.slide_in_down, R.anim.slide_in_down, R.anim.slide_in_down)
                             .add(R.id.main_filterTabContainer, FilterFragment.newInstance(), "tag")
                             .commit()
                 }

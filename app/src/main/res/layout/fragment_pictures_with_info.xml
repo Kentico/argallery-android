@@ -6,24 +6,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<FrameLayout
-		android:id="@+id/pictureList_emptyView"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:layout_editor_absoluteX="0dp"
-		tools:layout_editor_absoluteY="0dp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent">
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="dsadsa"/>
-
-	</FrameLayout>
-
 	<android.support.constraint.Guideline
 		android:id="@+id/pictureList_recyclerGuideline"
 		android:layout_width="wrap_content"
@@ -48,5 +30,141 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/pictureList_recyclerGuideline"/>
+
+	<FrameLayout
+		android:id="@+id/pictureList_emptyViewFavourites"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:layout_editor_absoluteX="0dp"
+		tools:layout_editor_absoluteY="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<LinearLayout
+			android:layout_gravity="center"
+			android:layout_width="@dimen/picture_item_width"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center"
+				android:text="@string/favourites_empty_screen_title"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				android:singleLine="false"/>
+
+			<android.support.v4.widget.Space
+				android:layout_width="wrap_content"
+				android:layout_height="8dp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="32dp"
+				android:paddingRight="32dp"
+				android:layout_gravity="center"
+				android:gravity="center"
+				android:text="@string/favourites_empty_screen_description"
+				android:textColor="@color/black"
+				android:textSize="15sp"
+				android:singleLine="false"/>
+
+			<android.support.v4.widget.Space
+				android:layout_width="wrap_content"
+				android:layout_height="24dp"/>
+
+			<TextView
+				android:id="@+id/pictureList_moveToAll"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:paddingTop="12dp"
+				android:paddingBottom="12dp"
+				android:paddingLeft="32dp"
+				android:paddingRight="32dp"
+				android:background="@drawable/bg_button"
+				android:foreground="?selectableItemBackground"
+				android:gravity="center"
+				android:text="@string/favourites_empty_screen_show_all"
+				android:textColor="@color/white"
+				android:textSize="14sp" />
+
+		</LinearLayout>
+
+	</FrameLayout>
+
+	<FrameLayout
+		android:id="@+id/pictureList_emptyViewFiltered"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:layout_editor_absoluteX="0dp"
+		tools:layout_editor_absoluteY="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<LinearLayout
+			android:layout_gravity="center"
+			android:layout_width="@dimen/picture_item_width"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center"
+				android:text="@string/filtered_empty_screen_title"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				android:singleLine="false"/>
+
+			<android.support.v4.widget.Space
+				android:layout_width="wrap_content"
+				android:layout_height="8dp"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="32dp"
+				android:paddingRight="32dp"
+				android:layout_gravity="center"
+				android:gravity="center"
+				android:text="@string/filtered_empty_screen_description"
+				android:textColor="@color/black"
+				android:textSize="15sp"
+				android:singleLine="false"/>
+
+			<android.support.v4.widget.Space
+				android:layout_width="wrap_content"
+				android:layout_height="24dp"/>
+
+			<TextView
+				android:id="@+id/pictureList_changeFilter"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:paddingTop="12dp"
+				android:paddingBottom="12dp"
+				android:paddingLeft="32dp"
+				android:paddingRight="32dp"
+				android:background="@drawable/bg_button"
+				android:foreground="?selectableItemBackground"
+				android:gravity="center"
+				android:text="@string/filtered_empty_screen_show_all"
+				android:textColor="@color/white"
+				android:textSize="14sp" />
+
+		</LinearLayout>
+
+	</FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

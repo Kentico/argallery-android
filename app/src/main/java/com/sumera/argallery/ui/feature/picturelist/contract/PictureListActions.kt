@@ -12,3 +12,7 @@ data class OnPictureClicked(val picture: Picture) : PictureListActions()
 object OnListEndReached : PictureListActions()
 
 object OnTryAgainClicked : PictureListActions()
+
+object OnChangeFilterClicked : PictureListActions()
+
+object OnShowAllClicked : PictureListActions()

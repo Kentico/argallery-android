@@ -159,7 +159,7 @@ class FilterFragment : BaseFragment<FilterState>() {
 
             filter_overshootFilledSpace.postDelayed({
                 filter_overshootFilledSpace.setVisibile(true)
-            }, 100)
+            }, 50)
         }
     }
 

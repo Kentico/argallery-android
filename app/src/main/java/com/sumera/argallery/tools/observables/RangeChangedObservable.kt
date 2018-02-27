@@ -13,7 +13,6 @@ class RangeChangedObservable(private val view: RangeBar) : Observable<Pair<Int, 
         view.setOnRangeBarChangeListener(listener)
     }
 
-
     internal class Listener(private val view: RangeBar, private val observer: Observer<in Pair<Int, Int>>) : MainThreadDisposable(), RangeBar.OnRangeBarChangeListener {
 
         override fun onRangeChangeListener(rangeBar: RangeBar?, leftPinIndex: Int, rightPinIndex: Int, leftPinValue: String?, rightPinValue: String?) {

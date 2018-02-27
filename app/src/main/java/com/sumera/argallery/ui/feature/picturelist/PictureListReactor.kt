@@ -6,16 +6,20 @@ import com.sumera.argallery.data.store.ui.model.PicturesWithLoadingState
 import com.sumera.argallery.domain.datasource.GetCurrentDataSourceStateObserver
 import com.sumera.argallery.domain.datasource.GetCurrentDataSourceTypeObserver
 import com.sumera.argallery.domain.datasource.LoadMoreFromDataSourceCompletabler
+import com.sumera.argallery.domain.datasource.SetCurrentDataSourceCompletabler
 import com.sumera.argallery.domain.focusedpicture.GetFocusedPictureObserver
 import com.sumera.argallery.tools.DEFAULT_DATA_SOURCE
 import com.sumera.argallery.tools.extensions.isInBounds
 import com.sumera.argallery.tools.koreactor.ExecuteBehaviour
 import com.sumera.argallery.tools.koreactor.ObserveBehaviour
 import com.sumera.argallery.ui.base.BaseReactor
+import com.sumera.argallery.ui.feature.picturelist.contract.NavigateToFilter
 import com.sumera.argallery.ui.feature.picturelist.contract.NavigateToPictureDetails
+import com.sumera.argallery.ui.feature.picturelist.contract.OnChangeFilterClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.OnFocusedIndexChanged
 import com.sumera.argallery.ui.feature.picturelist.contract.OnListEndReached
 import com.sumera.argallery.ui.feature.picturelist.contract.OnPictureClicked
+import com.sumera.argallery.ui.feature.picturelist.contract.OnShowAllClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.OnTryAgainClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.PictureListState
 import com.sumera.argallery.ui.feature.picturelist.contract.SetDataSourceType
@@ -33,8 +37,9 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class PictureListReactor @Inject constructor(
-        private val getCurrentDataSourceStateInteractor: GetCurrentDataSourceStateObserver,
+        private val getCurrentDataSourceStateObserver: GetCurrentDataSourceStateObserver,
         private val getCurrentDataSourceTypeObserver: GetCurrentDataSourceTypeObserver,
+        private val setCurrentDataSourceCompletabler: SetCurrentDataSourceCompletabler,
         private val loadMoreFromDataSourceCompletabler: LoadMoreFromDataSourceCompletabler,
         private val getFocusedPictureObserver: GetFocusedPictureObserver
 ) : BaseReactor<PictureListState>() {
@@ -55,6 +60,8 @@ class PictureListReactor @Inject constructor(
         val onPictureClicked = actions.ofActionType<OnPictureClicked>()
         val onListEndReached = actions.ofActionType<OnListEndReached>()
         val onTryAgainClicked = actions.ofActionType<OnTryAgainClicked>()
+        val onChangeFilterClicked = actions.ofActionType<OnChangeFilterClicked>()
+        val onShowAllClicked = actions.ofActionType<OnShowAllClicked>()
 
         val onLoadMoreDataAction = onListEndReached
                 .flatMapSingle { stateSingle }
@@ -76,7 +83,7 @@ class PictureListReactor @Inject constructor(
         // Observe pictures with loading state from global state
         ObserveBehaviour<Any, PicturesWithLoadingState, PictureListState>(
                 triggers = triggers(attachLifecycleObservable),
-                worker = observable { getCurrentDataSourceStateInteractor.execute() },
+                worker = observable { getCurrentDataSourceStateObserver.execute() },
                 message = messages { ShowLoadingStateWithData(it) }
         ).bindToView()
 
@@ -103,9 +110,20 @@ class PictureListReactor @Inject constructor(
                 .map { SetIsScrollToFocusedItemEnabled(true) }
                 .bindToView()
 
+        // Set ALL as data source
+        ExecuteBehaviour<Any, PictureListState>(
+                triggers = triggers(onShowAllClicked),
+                worker = completable { setCurrentDataSourceCompletabler.init(DataSourceType.ALL).execute() }
+        ).bindToView()
+
         // Navigate to picture details
         onPictureClicked
                 .map { NavigateToPictureDetails(it.picture) }
+                .bindToView()
+
+        // Navigate to filter
+        onChangeFilterClicked
+                .map { NavigateToFilter }
                 .bindToView()
     }
 

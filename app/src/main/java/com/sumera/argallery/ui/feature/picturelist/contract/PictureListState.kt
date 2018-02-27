@@ -14,3 +14,7 @@ data class PictureListState(
         val locallySelectedPicture: Picture?,
         val globallySelectedPicture: Picture?
 ) : MviState
+
+fun PictureListState.hasEmptyState(): Boolean {
+    return isError.not() && isLoading.not() && pictures.isEmpty()
+}

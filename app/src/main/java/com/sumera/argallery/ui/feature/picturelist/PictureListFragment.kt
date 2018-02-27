@@ -9,26 +9,34 @@ import android.transition.ChangeBounds
 import android.transition.TransitionManager
 import android.view.View
 import com.jakewharton.rxbinding2.support.v7.widget.dataChanges
+import com.jakewharton.rxbinding2.view.clicks
 import com.sumera.argallery.R
+import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.data.store.ui.model.Picture
 import com.sumera.argallery.tools.extensions.calculateDiffUtilResult
 import com.sumera.argallery.tools.extensions.setVisibile
 import com.sumera.argallery.tools.observables.centerItemPositions
+import com.sumera.argallery.ui.Navigator
 import com.sumera.argallery.ui.base.BaseFragment
 import com.sumera.argallery.ui.feature.picturedetails.PictureDetailsActivity
 import com.sumera.argallery.ui.feature.picturelist.adapter.info.PictureInfoAdapter
 import com.sumera.argallery.ui.feature.picturelist.adapter.picture.PictureListAdapter
+import com.sumera.argallery.ui.feature.picturelist.contract.NavigateToFilter
 import com.sumera.argallery.ui.feature.picturelist.contract.NavigateToPictureDetails
+import com.sumera.argallery.ui.feature.picturelist.contract.OnChangeFilterClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.OnFocusedIndexChanged
 import com.sumera.argallery.ui.feature.picturelist.contract.OnListEndReached
 import com.sumera.argallery.ui.feature.picturelist.contract.OnPictureClicked
+import com.sumera.argallery.ui.feature.picturelist.contract.OnShowAllClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.OnTryAgainClicked
 import com.sumera.argallery.ui.feature.picturelist.contract.PictureListState
+import com.sumera.argallery.ui.feature.picturelist.contract.hasEmptyState
 import com.sumera.koreactor.reactor.MviReactor
 import com.sumera.koreactor.reactor.data.MviEvent
 import com.sumera.koreactor.util.data.asOptional
 import com.sumera.koreactor.util.extension.getChange
 import com.sumera.koreactor.util.extension.getNotNull
+import com.sumera.koreactor.util.extension.getTrue
 import com.yarolegovich.discretescrollview.DSVOrientation
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import io.reactivex.Observable
@@ -41,6 +49,7 @@ class PictureListFragment : BaseFragment<PictureListState>() {
     @Inject lateinit var reactorFactory: PictureListReactorFactory
     @Inject lateinit var pictureImageAdapter: PictureListAdapter
     @Inject lateinit var pictureInfoAdapter: PictureInfoAdapter
+    @Inject lateinit var navigator: Navigator
 
     override val layoutRes = R.layout.fragment_pictures_with_info
 
@@ -64,6 +73,14 @@ class PictureListFragment : BaseFragment<PictureListState>() {
         pictureList_imageRecycler.centerItemPositions()
                 .throttleFirst(50, TimeUnit.MILLISECONDS)
                 .map { OnFocusedIndexChanged(it) }
+                .bindToReactor()
+
+        pictureList_changeFilter.clicks()
+                .map { OnChangeFilterClicked }
+                .bindToReactor()
+
+        pictureList_moveToAll.clicks()
+                .map { OnShowAllClicked }
                 .bindToReactor()
 
         pictureImageAdapter.dataChanges()
@@ -92,6 +109,14 @@ class PictureListFragment : BaseFragment<PictureListState>() {
                             previous.isError == new.isError
                 }.share()
 
+        val loadingErrorDataOrSourceTypeStateChanged = stateObservable
+                .distinctUntilChanged { previous, new ->
+                            previous.pictures == new.pictures &&
+                            previous.isLoading == new.isLoading &&
+                            previous.isError == new.isError &&
+                            previous.dataSourceType == new.dataSourceType
+                }.share()
+
         // Scroll to start when data source changes
         stateObservable.getChange { it.dataSourceType }
                 .observeState {
@@ -109,18 +134,32 @@ class PictureListFragment : BaseFragment<PictureListState>() {
                     pictureImageAdapter.setNewDataWithDiffUtil(newData, diffResult)
                 }
 
-        // Show/hide empty state
-        loadingErrorOrDataStateChanged
-                .filter { it.isError.not() && it.isLoading.not() && it.pictures.isEmpty()}
+        // Show favourites empty state
+        loadingErrorDataOrSourceTypeStateChanged
+                .getTrue { it.hasEmptyState() && it.dataSourceType == DataSourceType.FAVOURITES }
                 .observeState {
-                    showEmptyView()
+                    showEmptyFavourites()
                 }
 
-        // Show/hide empty state
-        loadingErrorOrDataStateChanged
-                .filter { it.isError || it.isLoading || it.pictures.isNotEmpty()}
+        // Hide favourites empty state
+        loadingErrorDataOrSourceTypeStateChanged
+                .getTrue { it.hasEmptyState().not() || it.dataSourceType != DataSourceType.FAVOURITES }
                 .observeState {
-                    hideEmptyView()
+                        hideEmptyFavourites()
+                }
+
+        // Show filtered empty state
+        loadingErrorDataOrSourceTypeStateChanged
+                .getTrue { it.hasEmptyState() && it.dataSourceType == DataSourceType.FILTERED }
+                .observeState {
+                    showEmptyFiltered()
+                }
+
+        // Hide filtered empty state
+        loadingErrorDataOrSourceTypeStateChanged
+                .getTrue { it.hasEmptyState().not() || it.dataSourceType != DataSourceType.FILTERED }
+                .observeState {
+                    hideEmptyFiltered()
                 }
 
         // Set picture info data
@@ -154,14 +193,18 @@ class PictureListFragment : BaseFragment<PictureListState>() {
                     }
                 }
 
+        // Hide info content when pictures are empty
         stateObservable
-                .getChange { it.pictures.size }
-                .observeState { picturesCount ->
-                    if (picturesCount == 0) {
-                        hideInfoRecycler()
-                    } else {
-                        showInfoRecycler()
-                    }
+                .getTrue { it.pictures.isEmpty() }
+                .observeState {
+                    hideInfoRecycler()
+                }
+
+        // Show info content when pictures are present
+        stateObservable
+                .getTrue { it.pictures.isNotEmpty() }
+                .observeState {
+                    showInfoRecycler()
                 }
     }
 
@@ -170,6 +213,9 @@ class PictureListFragment : BaseFragment<PictureListState>() {
             when(event) {
                 is NavigateToPictureDetails -> {
                     context?.let { startActivity(PictureDetailsActivity.getStartIntent(it, event.picture)) }
+                }
+                NavigateToFilter -> {
+                    navigator.navigateToFilter()
                 }
             }
         }
@@ -186,14 +232,24 @@ class PictureListFragment : BaseFragment<PictureListState>() {
         return data.toList()
     }
 
-    private fun showEmptyView() {
-        TransitionManager.beginDelayedTransition(pictureList_emptyView)
-        pictureList_emptyView.setVisibile(true)
+    private fun showEmptyFavourites() {
+        TransitionManager.beginDelayedTransition(pictureList_emptyViewFavourites, ChangeBounds())
+        pictureList_emptyViewFavourites.setVisibile(true)
     }
 
-    private fun hideEmptyView() {
-        TransitionManager.beginDelayedTransition(pictureList_emptyView)
-        pictureList_emptyView.setVisibile(false)
+    private fun hideEmptyFavourites() {
+        TransitionManager.beginDelayedTransition(pictureList_emptyViewFavourites, ChangeBounds())
+        pictureList_emptyViewFavourites.setVisibile(false)
+    }
+
+    private fun showEmptyFiltered() {
+        TransitionManager.beginDelayedTransition(pictureList_emptyViewFiltered, ChangeBounds())
+        pictureList_emptyViewFiltered.setVisibile(true)
+    }
+
+    private fun hideEmptyFiltered() {
+        TransitionManager.beginDelayedTransition(pictureList_emptyViewFiltered, ChangeBounds())
+        pictureList_emptyViewFiltered.setVisibile(false)
     }
 
     private fun showInfoRecycler() {

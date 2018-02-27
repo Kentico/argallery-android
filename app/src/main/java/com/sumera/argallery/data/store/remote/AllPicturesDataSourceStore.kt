@@ -45,7 +45,7 @@ open class AllPicturesDataSourceStore @Inject constructor(
     private fun subscribeToAllPictures() {
         Observable.merge(startLoadingSubject, Observable.just(LoadingType.RELOAD))
                 .switchMapSingle { loadingType -> getPreviousData(loadingType) }
-                .flatMap { previousPictures -> loadPictures(previousPictures) }
+                .switchMap { previousPictures -> loadPictures(previousPictures) }
                 .subscribeOn(Schedulers.io())
                 .subscribe { picturesWithLoadingState ->
                     changeState(picturesWithLoadingState)
