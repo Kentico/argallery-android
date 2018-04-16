@@ -16,8 +16,6 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_picture_detail.*
 import javax.inject.Inject
 
-
-
 class PictureDetailFragment : BaseFragment<PictureDetailState>() {
 
     @Inject lateinit var reactorFactory: PictureDetailReactorFactory
