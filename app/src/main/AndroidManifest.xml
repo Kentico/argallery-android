@@ -16,7 +16,9 @@
 		android:theme="@style/AppTheme"
 		tools:replace="android:icon,android:theme">
 
-		<activity android:name="com.sumera.argallery.ui.feature.main.MainActivity">
+		<activity
+			android:name="com.sumera.argallery.ui.feature.main.MainActivity"
+			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 
@@ -25,7 +27,13 @@
 		</activity>
 
 		<activity
-			android:name=".ui.feature.picturedetails.PictureDetailsActivity"/>
+			android:name=".ui.feature.picturedetails.PictureDetailsActivity"
+			android:screenOrientation="portrait"/>
+
+		<activity
+			android:name=".ui.feature.unityactivity.UnityStarterActivity"
+			android:screenOrientation="portrait"/>
+
 	</application>
 
 </manifest>

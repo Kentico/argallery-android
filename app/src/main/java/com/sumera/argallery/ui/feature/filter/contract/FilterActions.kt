@@ -29,7 +29,3 @@ data class OnFirstCategoryStateChanged(
 data class OnSecondCategoryStateChanged(
         val isEnabled: Boolean
 ) : FilterActions()
-
-data class OnThirdCategoryStateChanged(
-        val isEnabled: Boolean
-) : FilterActions()

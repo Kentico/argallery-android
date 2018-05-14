@@ -50,9 +50,19 @@
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
+				android:textSize="16sp"
 				android:gravity="center_vertical|left"
 				android:textColor="@color/white"
 				android:maxLines="1"/>
+
+			<ImageView
+				android:id="@+id/pictureDetail_augmentedReality"
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				android:layout_marginLeft="16dp"
+				android:layout_marginRight="16dp"
+				android:layout_gravity="center_vertical"
+				android:src="@drawable/ic_augmented_reality"/>
 
 			<ImageView
 				android:id="@+id/pictureDetail_favourite"
@@ -77,9 +87,9 @@
 					android:id="@+id/pictureDetail_description"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:paddingLeft="16dp"
+					android:paddingRight="16dp"
 					android:gravity="center|top"
-					android:text="The Awesome Sliding Up Panel"
-					android:textSize="16sp"
 					android:textColor="@color/white"/>
 
 			</LinearLayout>

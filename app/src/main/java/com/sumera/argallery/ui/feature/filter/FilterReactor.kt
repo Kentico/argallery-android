@@ -13,13 +13,11 @@ import com.sumera.argallery.ui.feature.filter.contract.OnFirstCategoryStateChang
 import com.sumera.argallery.ui.feature.filter.contract.OnPriceRangeChanged
 import com.sumera.argallery.ui.feature.filter.contract.OnResetButtonClicked
 import com.sumera.argallery.ui.feature.filter.contract.OnSecondCategoryStateChanged
-import com.sumera.argallery.ui.feature.filter.contract.OnThirdCategoryStateChanged
 import com.sumera.argallery.ui.feature.filter.contract.OnYearRangeChanged
 import com.sumera.argallery.ui.feature.filter.contract.SetCurrentFilter
 import com.sumera.argallery.ui.feature.filter.contract.SetFirstCategoryState
 import com.sumera.argallery.ui.feature.filter.contract.SetPriceRangeReducer
 import com.sumera.argallery.ui.feature.filter.contract.SetSecondCategoryState
-import com.sumera.argallery.ui.feature.filter.contract.SetThirdCategoryState
 import com.sumera.argallery.ui.feature.filter.contract.SetYearRangeReducer
 import com.sumera.koreactor.behaviour.messages
 import com.sumera.koreactor.behaviour.single
@@ -47,7 +45,6 @@ class FilterReactor @Inject constructor(
         val onPriceRangeChanged = actions.ofActionType<OnPriceRangeChanged>()
         val onFirstCategoryStateChanged = actions.ofActionType<OnFirstCategoryStateChanged>()
         val onSecondCategoryStateChanged = actions.ofActionType<OnSecondCategoryStateChanged>()
-        val onThirdCategoryStateChanged = actions.ofActionType<OnThirdCategoryStateChanged>()
 
         // Save current filter and close view
         Observable.merge(onBackButtonClicked, onCloseButtonClicked, onCloseAreaClicked)
@@ -81,10 +78,6 @@ class FilterReactor @Inject constructor(
 
         onSecondCategoryStateChanged
                 .map { SetSecondCategoryState(it.isEnabled) }
-                .bindToView()
-
-        onThirdCategoryStateChanged
-                .map { SetThirdCategoryState(it.isEnabled) }
                 .bindToView()
     }
 }

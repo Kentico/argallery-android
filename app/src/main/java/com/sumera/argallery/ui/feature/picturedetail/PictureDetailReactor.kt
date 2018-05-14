@@ -6,9 +6,11 @@ import com.sumera.argallery.domain.favourites.IsFavouriteObserver
 import com.sumera.argallery.domain.favourites.RemoveFavouritePictureCompletabler
 import com.sumera.argallery.tools.koreactor.ExecuteBehaviour
 import com.sumera.argallery.tools.koreactor.ObserveBehaviour
+import com.sumera.argallery.ui.feature.picturedetail.contract.AugmentedRealityClicked
+import com.sumera.argallery.ui.feature.picturedetail.contract.NavigateToAugmentedReality
 import com.sumera.argallery.ui.feature.picturedetail.contract.PictureDetailState
 import com.sumera.argallery.ui.feature.picturedetail.contract.SetFavourite
-import com.sumera.argallery.ui.feature.picturedetail.contract.TogglFavouriteAction
+import com.sumera.argallery.ui.feature.picturedetail.contract.ToggleFavouriteAction
 import com.sumera.koreactor.behaviour.completable
 import com.sumera.koreactor.behaviour.messages
 import com.sumera.koreactor.behaviour.observable
@@ -30,13 +32,20 @@ class PictureDetailReactor @Inject constructor(
     }
 
     override fun bind(actions: Observable<MviAction<PictureDetailState>>) {
-        val pictureFavouriteAction = actions.ofActionType<TogglFavouriteAction>()
+        val pictureFavouriteAction = actions.ofActionType<ToggleFavouriteAction>()
                 .flatMapSingle { stateSingle.map { it.isFavourite } }
                 .filter { !it }
 
-        val pictureUnfavouriteAction = actions.ofActionType<TogglFavouriteAction>()
+        val pictureUnfavouriteAction = actions.ofActionType<ToggleFavouriteAction>()
                 .flatMapSingle { stateSingle.map { it.isFavourite } }
                 .filter { it }
+
+        val augmentedRealityClicked = actions.ofActionType<AugmentedRealityClicked>()
+
+        // Navigate to augmented reality screen
+        augmentedRealityClicked
+                .map { NavigateToAugmentedReality }
+                .bindToView()
 
         // Add picture to favourites
         ExecuteBehaviour<Boolean, PictureDetailState>(

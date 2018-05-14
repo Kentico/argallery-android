@@ -63,6 +63,7 @@ class PictureListFragment : BaseFragment<PictureListState>() {
         val pictureLayoutManager = LinearLayoutManager(context, HORIZONTAL, false)
         pictureList_infoRecycler.layoutManager = pictureLayoutManager
         pictureList_infoRecycler.adapter = pictureInfoAdapter
+        pictureList_infoRecycler.setOnTouchListener { _, _ -> true }
 
         pictureList_imageRecycler.setOrientation(DSVOrientation.HORIZONTAL)
         pictureList_imageRecycler.adapter = pictureImageAdapter
@@ -256,7 +257,7 @@ class PictureListFragment : BaseFragment<PictureListState>() {
         val constraintLayout = view as? ConstraintLayout ?: throw IllegalStateException("Constraint layout should be set as root")
         val constraintSet = ConstraintSet()
         constraintSet.clone(constraintLayout)
-        constraintSet.setGuidelinePercent(R.id.pictureList_recyclerGuideline, 0.2f)
+        constraintSet.setGuidelinePercent(R.id.pictureList_recyclerGuideline, 0.3f)
         TransitionManager.beginDelayedTransition(constraintLayout, ChangeBounds())
         constraintSet.applyTo(constraintLayout)
     }
@@ -265,7 +266,7 @@ class PictureListFragment : BaseFragment<PictureListState>() {
         val constraintLayout = view as? ConstraintLayout ?: throw IllegalStateException("Constraint layout should be set as root")
         val constraintSet = ConstraintSet()
         constraintSet.clone(constraintLayout)
-        constraintSet.setGuidelinePercent(R.id.pictureList_recyclerGuideline, 0f)
+        constraintSet.setGuidelinePercent(R.id.pictureList_recyclerGuideline, 0.3f)
         TransitionManager.beginDelayedTransition(constraintLayout, ChangeBounds())
         constraintSet.applyTo(constraintLayout)
     }

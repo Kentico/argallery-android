@@ -11,13 +11,13 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
-		app:layout_constraintGuide_percent="0.2"/>
+		app:layout_constraintGuide_percent="0.5"/>
 
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/pictureList_infoRecycler"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
-		app:layout_constraintBottom_toTopOf="@+id/pictureList_imageRecycler"
+		app:layout_constraintBottom_toBottomOf="@id/pictureList_recyclerGuideline"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"/>
@@ -29,7 +29,7 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/pictureList_recyclerGuideline"/>
+		app:layout_constraintTop_toBottomOf="@id/pictureList_recyclerGuideline"/>
 
 	<FrameLayout
 		android:id="@+id/pictureList_emptyViewFavourites"

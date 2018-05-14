@@ -27,7 +27,6 @@ import com.sumera.argallery.ui.feature.filter.contract.OnFirstCategoryStateChang
 import com.sumera.argallery.ui.feature.filter.contract.OnPriceRangeChanged
 import com.sumera.argallery.ui.feature.filter.contract.OnResetButtonClicked
 import com.sumera.argallery.ui.feature.filter.contract.OnSecondCategoryStateChanged
-import com.sumera.argallery.ui.feature.filter.contract.OnThirdCategoryStateChanged
 import com.sumera.argallery.ui.feature.filter.contract.OnYearRangeChanged
 import com.sumera.koreactor.reactor.MviReactor
 import com.sumera.koreactor.reactor.data.MviEvent
@@ -90,10 +89,6 @@ class FilterFragment : BaseFragment<FilterState>() {
         filter_secondCategory.checkedChanges().skip(1)
                 .map { OnSecondCategoryStateChanged(it) }
                 .bindToReactor()
-
-        filter_thirdCategory.checkedChanges().skip(1)
-                .map { OnThirdCategoryStateChanged(it) }
-                .bindToReactor()
     }
 
     override fun onResume() {
@@ -118,6 +113,8 @@ class FilterFragment : BaseFragment<FilterState>() {
                         }
                     }
 
+                    filter_priceTitle.text = getString(R.string.filter_price_title, filter.minPrice.toString(), filter.maxPrice.toString())
+
                     val minYearChanged = filter_year.leftPinValue.toInt() != filter.minYear
                     val maxYearChanged = filter_year.rightPinValue.toInt() != filter.maxYear
                     if (minYearChanged || maxYearChanged) {
@@ -126,9 +123,10 @@ class FilterFragment : BaseFragment<FilterState>() {
                         }
                     }
 
+                    filter_yearTitle.text = getString(R.string.filter_year_title, filter.minYear.toString(), filter.maxYear.toString())
+
                     filter_firstCategory.isChecked = filter.firstCategoryEnabled
                     filter_secondCategory.isChecked = filter.secondCategoryEnabled
-                    filter_thirdCategory.isChecked = filter.thirdCategoryEnabled
                 }
     }
 

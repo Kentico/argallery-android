@@ -4,4 +4,6 @@ import com.sumera.koreactor.reactor.data.MviAction
 
 sealed class PictureDetailActions : MviAction<PictureDetailState>
 
-class TogglFavouriteAction : PictureDetailActions()
+object ToggleFavouriteAction : PictureDetailActions()
+
+object AugmentedRealityClicked : PictureDetailActions()

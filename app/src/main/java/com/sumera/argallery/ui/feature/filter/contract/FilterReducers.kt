@@ -38,10 +38,3 @@ data class SetSecondCategoryState(val isEnabled: Boolean) : FilterReducers() {
         return oldState.copy(currentFilter = newFilter)
     }
 }
-
-data class SetThirdCategoryState(val isEnabled: Boolean) : FilterReducers() {
-    override fun reduce(oldState: FilterState): FilterState {
-        val newFilter = oldState.currentFilter.copy(thirdCategoryEnabled = isEnabled)
-        return oldState.copy(currentFilter = newFilter)
-    }
-}

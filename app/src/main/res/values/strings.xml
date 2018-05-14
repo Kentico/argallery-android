@@ -1,6 +1,11 @@
 <resources>
 	<string name="app_name">ARGallery</string>
 
+	<!-- Main Activity -->
+	<string name="main_all_tab">All</string>
+	<string name="main_favourites_tab">Favourites</string>
+	<string name="main_filter_tab">Filter</string>
+
 	<!-- Picture list erro -->
 	<string name="error_title">Connection Error</string>
 	<string name="error_description">Please ensure you are connected to the internet and try again.</string>
@@ -9,6 +14,10 @@
 	<!-- Filter fragment -->
 	<string name="filter_title">Filter</string>
 	<string name="filter_reset">RESET</string>
+	<string name="filter_year_title">Year: %1$s - %2$s</string>
+	<string name="filter_price_title">Price: %1$s - %2$s</string>
+	<string name="filter_animals_category">Animals pictures</string>
+	<string name="filter_nature_category">Nature pictures</string>
 
 	<!-- Favourites empty screen -->
 	<string name="favourites_empty_screen_title">No data</string>

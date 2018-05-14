@@ -11,8 +11,7 @@ data class Filter(
         val minYear: Int,
         val maxYear: Int,
         val firstCategoryEnabled: Boolean,
-        val secondCategoryEnabled: Boolean,
-        val thirdCategoryEnabled: Boolean
+        val secondCategoryEnabled: Boolean
 ) {
     companion object {
         fun createDefault(): Filter {
@@ -22,8 +21,7 @@ data class Filter(
                     minYear = FILTER_MIN_YEAR,
                     maxYear = FILTER_MAX_YEAR,
                     firstCategoryEnabled = true,
-                    secondCategoryEnabled = true,
-                    thirdCategoryEnabled = true
+                    secondCategoryEnabled = true
             )
         }
     }

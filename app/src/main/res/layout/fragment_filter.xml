@@ -22,8 +22,10 @@
 		android:id="@+id/filter_content"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:paddingBottom="16dp"
 		android:background="@color/colorPrimary"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:clipChildren="false" >
 
 		<android.support.v7.widget.Toolbar
 			android:layout_width="match_parent"
@@ -70,10 +72,21 @@
 
 		</android.support.v7.widget.Toolbar>
 
+		<TextView
+			android:id="@+id/filter_yearTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:paddingTop="16dp"
+			android:gravity="center_vertical"
+			android:text="Price: 1800 - 2000"
+			android:textColor="@color/white"/>
+
 		<com.appyvet.materialrangebar.RangeBar
 			android:id="@+id/filter_year"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="48dp"
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
 			app:mrb_pinRadius="16dp"
@@ -92,11 +105,22 @@
 			app:mrb_tickHeight="0dp"
 			app:mrb_tickEnd="2018"
 			app:mrb_tickStart="1980"/>
+
+		<TextView
+			android:id="@+id/filter_priceTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:paddingTop="16dp"
+			android:gravity="center_vertical"
+			android:text="Year: 1990 - 2010"
+			android:textColor="@color/white"/>
 
 		<com.appyvet.materialrangebar.RangeBar
 			android:id="@+id/filter_price"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="48dp"
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
 			app:mrb_pinRadius="16dp"
@@ -116,20 +140,57 @@
 			app:mrb_tickEnd="2018"
 			app:mrb_tickStart="1980"/>
 
-		<CheckBox
-			android:id="@+id/filter_firstCategory"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:orientation="horizontal">
 
-		<CheckBox
-			android:id="@+id/filter_secondCategory"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+			<android.support.v7.widget.AppCompatCheckBox
+				android:id="@+id/filter_firstCategory"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:buttonTint="@color/white"/>
 
-		<CheckBox
-			android:id="@+id/filter_thirdCategory"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="16dp"
+				android:layout_marginRight="16dp"
+				android:gravity="center_vertical"
+				android:text="@string/filter_animals_category"
+				android:textColor="@color/white"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:orientation="horizontal">
+
+			<android.support.v7.widget.AppCompatCheckBox
+				android:id="@+id/filter_secondCategory"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:buttonTint="@color/white"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="16dp"
+				android:layout_marginRight="16dp"
+				android:paddingTop="16dp"
+				android:gravity="center_vertical"
+				android:text="@string/filter_nature_category"
+				android:textColor="@color/white"/>
+
+		</LinearLayout>
 
 	</LinearLayout>
 
