@@ -1,6 +1,7 @@
 package com.sumera.argallery.ui.feature.picturedetail
 
 import com.sumera.argallery.data.store.ui.model.Picture
+import com.sumera.argallery.domain.UnityImagePrepareCompletabler
 import com.sumera.argallery.domain.favourites.AddFavouritePictureCompletabler
 import com.sumera.argallery.domain.favourites.IsFavouriteObserver
 import com.sumera.argallery.domain.favourites.RemoveFavouritePictureCompletabler
@@ -24,6 +25,7 @@ class PictureDetailReactor @Inject constructor(
         private val isFavouriteObserver: IsFavouriteObserver,
         private val addFavouritePictureCompletabler: AddFavouritePictureCompletabler,
         private val removeFavouritePictureCompletabler: RemoveFavouritePictureCompletabler,
+        private val unityImagePrepareCompletabler: UnityImagePrepareCompletabler,
         private val picture: Picture
 ) : MviReactor<PictureDetailState>() {
 
@@ -44,7 +46,8 @@ class PictureDetailReactor @Inject constructor(
 
         // Navigate to augmented reality screen
         augmentedRealityClicked
-                .map { NavigateToAugmentedReality }
+                .flatMapSingle { stateSingle }
+                .flatMapSingle { unityImagePrepareCompletabler.init(it.picture.imageUrl).execute().toSingleDefault(NavigateToAugmentedReality) }
                 .bindToView()
 
         // Add picture to favourites

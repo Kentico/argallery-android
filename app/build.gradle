@@ -7,7 +7,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.sumera.argalleryandroid"
+        applicationId "com.sumera.argallery.unity"
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1

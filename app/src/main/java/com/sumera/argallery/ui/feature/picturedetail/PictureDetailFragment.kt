@@ -13,7 +13,7 @@ import com.sumera.argallery.ui.feature.picturedetail.contract.AugmentedRealityCl
 import com.sumera.argallery.ui.feature.picturedetail.contract.NavigateToAugmentedReality
 import com.sumera.argallery.ui.feature.picturedetail.contract.PictureDetailState
 import com.sumera.argallery.ui.feature.picturedetail.contract.ToggleFavouriteAction
-import com.sumera.argallery.ui.feature.unityactivity.UnityStarterActivity
+import com.sumera.argallery.unity.UnityPlayerActivity
 import com.sumera.koreactor.reactor.MviReactor
 import com.sumera.koreactor.reactor.data.MviEvent
 import com.sumera.koreactor.util.extension.getChange
@@ -95,7 +95,7 @@ class PictureDetailFragment : BaseFragment<PictureDetailState>() {
         eventsObservable.observeEvent { event ->
             when (event) {
                 NavigateToAugmentedReality -> {
-                    val intent = Intent(activity, UnityStarterActivity::class.java)
+                    val intent = Intent(context, UnityPlayerActivity::class.java)
                     startActivity(intent)
                 }
             }
