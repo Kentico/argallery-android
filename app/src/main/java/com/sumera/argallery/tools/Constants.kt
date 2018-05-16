@@ -2,7 +2,7 @@ package com.sumera.argallery.tools
 
 import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 
-const val DATA_REQUEST_LIMIT = 1
+const val DATA_REQUEST_LIMIT = 20
 
 val DEFAULT_DATA_SOURCE = DataSourceType.ALL
 
