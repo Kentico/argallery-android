@@ -54,7 +54,7 @@ class NetworkModule {
     @Singleton
     @KenticoDeliveryUrl
     fun kenticoDeliveryUrl(): HttpUrl {
-        val url = HttpUrl.parse("https://deliver.kenticocloud.com/17bbb0c7-e46c-45ab-b1d2-177ab5f9244f/")
+        val url = HttpUrl.parse("https://deliver.kenticocloud.com/620a29c8-8672-00b6-7084-5c282fe5f80f/")
         return url ?: throw IllegalStateException("Invalid url")
     }
 
