@@ -5,6 +5,10 @@ Register your account for free at https://app.kenticocloud.com.
 With the ARCore platform, the application supports Augmented Reality and is able to create a virtual gallery within real environment.
 Examples of how the app work can be seen [here](https://is.muni.cz/th/yabmm/videos.zip).
 
+![list](./screenshots/argalleryList.png)
+![detail](./screenshots/argalleryDetail.png)
+![ar](./screenshots/argalleryWall.png)
+
 ## Application Installation
 1. Install [Android Studio](https://developer.android.com/studio/) and the latest Android SDK tools. 
 2. Clone or download the repository into a chosen folder. 
