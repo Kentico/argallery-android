@@ -9,7 +9,7 @@ import com.sumera.koreactor.reactor.data.MviState
 import io.reactivex.Observable
 
 class ObserveBehaviour<INPUT, OUTPUT, STATE : MviState>(
-        private val triggers: Triggers<out INPUT>,
+        private val triggers: Triggers<INPUT>,
         private val worker: Worker<INPUT, OUTPUT>,
         private val message: Messages<OUTPUT, STATE>
 ) : MviBehaviour<STATE> {

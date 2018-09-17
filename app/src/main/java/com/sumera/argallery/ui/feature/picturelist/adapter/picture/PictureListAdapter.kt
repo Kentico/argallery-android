@@ -1,6 +1,5 @@
 package com.sumera.argallery.ui.feature.picturelist.adapter.picture
 
-import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sumera.argallery.data.store.ui.model.Picture
@@ -36,14 +35,13 @@ class PictureListAdapter @Inject constructor() : RecyclerView.Adapter<BasePictur
         return onListEndReached.hide()
     }
 
-    fun setNewDataWithDiffUtil(newData: List<DataWrapper>, diffUtil: DiffUtil.DiffResult) {
+    fun setNewData(newData: List<DataWrapper>) {
         data = newData
         notifyDataSetChanged()
-//        diffUtil.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasePictureListViewHolder {
-        return when(ViewHolderType.values()[viewType]) {
+        return when (ViewHolderType.values()[viewType]) {
             ViewHolderType.PICTURE -> PictureViewHolder.createInstance(parent)
             ViewHolderType.LOADING -> LoadingViewHolder.createInstance(parent)
             ViewHolderType.ERROR -> ErrorViewHolder.createInstance(parent)
@@ -51,7 +49,7 @@ class PictureListAdapter @Inject constructor() : RecyclerView.Adapter<BasePictur
     }
 
     override fun onBindViewHolder(holder: BasePictureListViewHolder?, position: Int) {
-        when(holder) {
+        when (holder) {
             is PictureViewHolder -> {
                 data[position].picture?.let { picture ->
                     holder.itemView.setOnClickListener { clickSubject.onNext(picture) }
@@ -88,8 +86,9 @@ class PictureListAdapter @Inject constructor() : RecyclerView.Adapter<BasePictur
     ) : DiffUtilItem {
         override val diffUtilIdentity: String
             get() {
-                return when(type) {
-                    ViewHolderType.PICTURE -> picture?.diffUtilIdentity ?: throw IllegalStateException()
+                return when (type) {
+                    ViewHolderType.PICTURE -> picture?.diffUtilIdentity
+                            ?: throw IllegalStateException()
                     ViewHolderType.ERROR -> "error_identity"
                     ViewHolderType.LOADING -> "loading_identity"
                 }
