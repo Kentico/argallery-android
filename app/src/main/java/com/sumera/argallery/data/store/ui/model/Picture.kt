@@ -14,5 +14,6 @@ data class Picture(
         val price: Int
 ) : DiffUtilItem, Parcelable {
 
+    @Transient
     override val diffUtilIdentity = id
 }

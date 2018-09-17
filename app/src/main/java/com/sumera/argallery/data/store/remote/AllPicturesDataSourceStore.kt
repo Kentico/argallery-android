@@ -1,5 +1,6 @@
 package com.sumera.argallery.data.store.remote
 
+import com.kenticocloud.delivery_core.interfaces.item.common.IQueryParameter
 import com.sumera.argallery.data.store.ui.datasource.AbstractDataSource
 import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.data.store.ui.datasource.model.LoadingState
@@ -36,8 +37,8 @@ open class AllPicturesDataSourceStore @Inject constructor(
         startLoadingSubject.onNext(LoadingType.RELOAD)
     }
 
-    open protected fun createQueryParams(): Map<String, String> {
-        return emptyMap()
+    open protected fun createQueryParams(): List<IQueryParameter> {
+        return emptyList()
     }
 
     private fun subscribeToAllPictures() {
@@ -51,7 +52,7 @@ open class AllPicturesDataSourceStore @Inject constructor(
     }
 
     private fun loadPictures(previousPictures: List<Picture>): Observable<PicturesWithLoadingState> {
-        return kenticoStore.getPictures(DATA_REQUEST_LIMIT, previousPictures.size, createQueryParams()).toObservable()
+        return kenticoStore.getPictures(DATA_REQUEST_LIMIT, createQueryParams()).toObservable()
                 .map { newPictures ->
                     val state = if (newPictures.size < DATA_REQUEST_LIMIT) {
                         LoadingState.COMPLETED
@@ -76,5 +77,4 @@ open class AllPicturesDataSourceStore @Inject constructor(
     enum class LoadingType {
         RELOAD, LOAD_MORE
     }
-
 }

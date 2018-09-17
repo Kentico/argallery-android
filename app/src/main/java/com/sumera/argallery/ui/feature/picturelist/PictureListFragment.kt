@@ -131,8 +131,8 @@ class PictureListFragment : BaseFragment<PictureListState>() {
         loadingErrorOrDataStateChanged
                 .map { state-> createAdapterData(state.pictures, state.isLoading, state.isError)}
                 .calculateDiffUtilResult()
-                .observeState { (newData, diffResult) ->
-                    pictureImageAdapter.setNewDataWithDiffUtil(newData, diffResult)
+                .observeState { (newData) ->
+                    pictureImageAdapter.setNewData(newData)
                 }
 
         // Show favourites empty state

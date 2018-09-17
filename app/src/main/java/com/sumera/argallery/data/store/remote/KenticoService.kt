@@ -1,17 +1,9 @@
 package com.sumera.argallery.data.store.remote
 
-import com.sumera.argallery.data.store.remote.model.PictureResponse
+import com.kenticocloud.delivery_core.interfaces.item.common.IQueryParameter
+import com.sumera.argallery.data.store.remote.model.PictureModel
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
 
 interface KenticoService {
-
-    @GET("items?system.type=picture")
-    fun getPictures(
-            @Query("limit") limit: Int,
-            @Query("skip") skip: Int,
-            @QueryMap(encoded = false) options: Map<String, String>
-    ): Single<PictureResponse>
+    fun getPictures(limit: Int, parameters: List<IQueryParameter>): Single<List<PictureModel>>
 }

@@ -24,5 +24,9 @@ Examples of how the app work can be seen [here](https://is.muni.cz/th/yabmm/vide
 You can learn more about content editing with Kentico Cloud in the [documentation](https://developer.kenticocloud.com/docs).
 
 ## Content Delivery
-1. In order to utilize your own project instead of the default one, you need to change the `url` constant in the `NetworkModule.kt` file to the ID of your own project.
+You can retrieve content either through the Kentico Cloud Delivery SDKs or the Kentico Cloud Delivery API.
+
+This project is utilizing [Delivery JavaRX (Android) SDK](https://github.com/Kentico/KenticoCloudDeliveryJavaRxSDK) for content retrieval.
+
+1. In order to utilize your own Kentico Cloud project instead of the default one, you need to change the `KENTICO_CLOUD_PROJECT_ID` constant in the `AppConfig` file to the ID of your own project.
 2. The project ID can be found on Kentico Cloud by navigating to *Project Settings* and then to *API Keys*.

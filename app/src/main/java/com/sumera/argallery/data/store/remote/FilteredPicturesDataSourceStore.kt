@@ -1,5 +1,7 @@
 package com.sumera.argallery.data.store.remote
 
+import com.kenticocloud.delivery_core.interfaces.item.common.IQueryParameter
+import com.kenticocloud.delivery_core.models.common.Filters
 import com.sumera.argallery.data.store.ui.FilterStore
 import com.sumera.argallery.data.store.ui.datasource.model.DataSourceType
 import com.sumera.argallery.data.store.ui.model.Filter
@@ -20,33 +22,34 @@ class FilteredPicturesDataSourceStore @Inject constructor(
 
     override val dataSourceType = DataSourceType.FILTERED
 
-    override fun createQueryParams(): Map<String, String> {
+    override fun createQueryParams(): List<IQueryParameter> {
         val filter = filterStore.getCurrentFilter()
-        return mapOf(
-                "elements.price[gte]" to filter.minPrice.toString(),
-                "elements.price[lte]" to filter.maxPrice.toString(),
-                "elements.year[gte]" to filter.minYear.toString(),
-                "elements.year[lte]" to filter.maxYear.toString(),
-                "elements.categories[any]" to createArrayFromSelectedCategories(filter)
+        val parameters = mutableListOf(
+                Filters.GreaterThanOrEqualFilter("elements.price", filter.minPrice.toString()),
+                Filters.LessThanOrEqualFilter("elements.price", filter.maxPrice.toString()),
+                Filters.GreaterThanOrEqualFilter("elements.year", filter.minYear.toString()),
+                Filters.LessThanOrEqualFilter("elements.year", filter.maxYear.toString())
         )
+        val categoryFilter = createFilterFromSelectedCategories(filter)
+        parameters.add(categoryFilter)
+
+        return parameters
+    }
+
+    private fun createFilterFromSelectedCategories(filter: Filter): IQueryParameter {
+        val filteredCategories = mutableListOf<String>()
+        if (filter.firstCategoryEnabled) {
+            filteredCategories.add("is_animal_picture")
+        }
+        if (filter.secondCategoryEnabled) {
+            filteredCategories.add("is_nature_picture")
+        }
+
+        return Filters.AnyFilter("elements.categories", filteredCategories)
     }
 
     private fun subscribeToFilterChanges() {
         filterStore.getCurrentFilterObservable()
                 .subscribe { reload() }
-    }
-
-    private fun createArrayFromSelectedCategories(filter: Filter): String {
-        val categories = mutableListOf<String>()
-
-        if (filter.firstCategoryEnabled) {
-            categories.add("is_animal_picture")
-        }
-
-        if (filter.secondCategoryEnabled) {
-            categories.add("is_nature_picture")
-        }
-
-        return categories.joinToString(separator = ",")
     }
 }

@@ -31,14 +31,14 @@ android {
 
 dependencies {
     // Unity ARGallery module
-    implementation(name: 'argalleryunity', ext:'aar')
+    implementation(name: 'argalleryunity', ext: 'aar')
     implementation(name: 'arcore_client', ext: 'aar')
     implementation(name: 'google_ar_required', ext: 'aar')
-    implementation(name: 'unityandroidpermissions', ext:'aar')
-    implementation(name: 'unitygar', ext:'aar')
+    implementation(name: 'unityandroidpermissions', ext: 'aar')
+    implementation(name: 'unitygar', ext: 'aar')
 
     // Kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Kotlin extension
     implementation "androidx.core:core-ktx:$rootProject.ext.ANDROID_KTX"
@@ -54,6 +54,9 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$RX_BINDING"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.ext.RX_BINDING"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rootProject.ext.RX_BINDING"
+
+    //Kentico Cloud Delivery SDK
+    implementation 'com.kenticocloud:delivery-rx:2.0.1'
 
     // Permissions
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
@@ -80,13 +83,6 @@ dependencies {
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.RETROFIT_VERSION"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.RETROFIT_VERSION"
-    implementation "com.squareup.retrofit2:converter-moshi:$rootProject.ext.RETROFIT_VERSION"
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.OK_HTTP_VERSION"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.OK_HTTP_VERSION"
-
-    // Json parsing
-    implementation "com.squareup.moshi:moshi:$rootProject.ext.MOSHI_VERSION"
-    implementation "com.squareup.moshi:moshi-kotlin:$rootProject.ext.MOSHI_VERSION"
 
     // Image loader
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.GLIDE_VERSION"
