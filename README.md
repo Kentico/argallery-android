@@ -1,4 +1,7 @@
 # Kentico Cloud Art Gallery Application for Android
+
+[![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com) 
+
 Implementation of an art gallery application for Android written in Kotlin that utilizes Kentico Cloud CMS for content management. 
 Register your account for free at https://app.kenticocloud.com.
 
@@ -30,3 +33,6 @@ This project is utilizing [Delivery JavaRX (Android) SDK](https://github.com/Ken
 
 1. In order to utilize your own Kentico Cloud project instead of the default one, you need to change the `KENTICO_CLOUD_PROJECT_ID` constant in the `AppConfig` file to the ID of your own project.
 2. The project ID can be found on Kentico Cloud by navigating to *Project Settings* and then to *API Keys*.
+
+
+![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/argallery-android?pixel)
