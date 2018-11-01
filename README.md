@@ -36,3 +36,6 @@ This project is utilizing [Delivery JavaRX (Android) SDK](https://github.com/Ken
 
 
 ![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/argallery-android?pixel)
+
+## Looking for iOS?
+[![Apple iOS](./screenshots/apple.jpg) Click here](https://github.com/Kentico/argallery-ios)
