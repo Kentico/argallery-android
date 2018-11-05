@@ -19,22 +19,6 @@ Examples of how the app work can be seen [here](https://is.muni.cz/th/yabmm/vide
 4. Building the project in Android Studio creates an `.apk` file, located in `app\build\outputs\apk\debug`.
 5. The file can be used to install the application on a mobile device, but be sure to have one that [supports ARCore platform](https://developers.google.com/ar/discover/supported-devices).
 
-## Content Administration
-1. Navigate to https://app.kenticocloud.com in your browser.
-2. Sign in with your credentials.
-3. Manage content in the content administration interface of your sample project.
-
-You can learn more about content editing with Kentico Cloud in the [documentation](https://developer.kenticocloud.com/docs).
-
-## Content Delivery
-You can retrieve content either through the Kentico Cloud Delivery SDKs or the Kentico Cloud Delivery API.
-
-This project is utilizing [Delivery JavaRX (Android) SDK](https://github.com/Kentico/KenticoCloudDeliveryJavaRxSDK) for content retrieval.
-
-1. In order to utilize your own Kentico Cloud project instead of the default one, you need to change the `KENTICO_CLOUD_PROJECT_ID` constant in the `AppConfig` file to the ID of your own project.
-2. The project ID can be found on Kentico Cloud by navigating to *Project Settings* and then to *API Keys*.
-
-
 ![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/argallery-android?pixel)
 
 ## Looking for iOS?
