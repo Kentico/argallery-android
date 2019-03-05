@@ -1,6 +1,6 @@
 # Kentico Cloud Art Gallery Application for Android
 
-[![Forums](https://img.shields.io/badge/chat-on%20forums-orange.svg)](https://forums.kenticocloud.com) 
+[![Stack Overflow](https://img.shields.io/stackexchange/stackoverflow/t/kentico%2dcloud.svg?label=Stack%20Overflow)](https://stackoverflow.com/tags/kentico-cloud)
 
 Implementation of an art gallery application for Android written in Kotlin that utilizes Kentico Cloud CMS for content management. 
 Register your account for free at https://app.kenticocloud.com.
