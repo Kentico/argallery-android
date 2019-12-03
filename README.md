@@ -1,6 +1,9 @@
-# Kentico Cloud Art Gallery Application for Android
+# ARCHIVED - Kentico Cloud Art Gallery Application for Android
 
-[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/) [![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
+
+> <h2 align="center">:warning:<br><br>Archive Notice</h2>
+> This repository is no longer being maintained for compatibility with the latest version of the product. Examples in this repository refer to the previous product name, <strong>Kentico Cloud</strong>, rather than the new product name, <strong>Kentico Kontent</strong>.
 
 Implementation of an art gallery application for Android written in Kotlin that utilizes Kentico Cloud CMS for content management. 
 Register your account for free at https://app.kenticocloud.com.
